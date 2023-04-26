@@ -1,0 +1,31 @@
+.RegisterDwellerBody {
+  text-align: center;
+  width: 100%;
+  height: 100%;
+  position: relative;
+  margin-bottom: 55px;
+  overflow: auto;
+}
+
+.DivBckgImg {
+  position: absolute;
+  width: 780px;
+  height: 100%;
+}
+
+.RegisterDwellerBckgImg {
+  position: relative;
+  width: 780px;
+  min-height: 125vh;
+  float: left;
+  background-image: url("/src/utils/images/LoginBg.jpg");
+  background-position: center;
+  background-size: cover;
+}
+
+.LogoRegisterDweller {
+  height: 100px;
+  width: 200px;
+  left: 775px;
+  position: relative;
+}

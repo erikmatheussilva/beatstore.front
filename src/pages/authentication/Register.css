@@ -1,0 +1,199 @@
+html {
+  position: relative;
+  min-height: 100%;
+  width: 100%;
+  overflow-y: hidden;
+}
+
+body {
+  font-family: "Roboto";
+}
+
+.Register {
+  text-align: center;
+  height: 100%;
+  width: 100%;
+}
+
+.Register-header {
+  position: sticky;
+  width: 100%;
+  height: 70px;
+  background: #ffffff;
+  display: flex;
+  align-items: center;
+}
+
+.LoginButton {
+  color: #474747;
+  font-size: 16px;
+  font-family: 'Poppins';
+  text-decoration: none;
+  text-align: center;
+  background: #FFFFFF;
+  border: 1px solid #495057;
+  box-sizing: content-box;
+  border-radius: 4px;
+  height: 22px;
+  width: 70px;
+  margin-left: 40px;
+  margin-right: 20px;
+
+}
+
+.ForgotPasswordButton {
+  color: #474747;
+  font-size: 16px;
+  font-family: 'Poppins';
+  text-decoration: none;
+  text-align: center;
+  background: #FFFFFF;
+  border: 1px solid #495057;
+  box-sizing: content-box;
+  border-radius: 4px;
+  height: 26px;
+  width: 155px;
+  display: inline;
+  padding-top: 4px;
+  min-inline-size: 180px;
+
+}
+
+.LoginButton:hover {
+  background: lightgray;
+}
+
+.ForgotPasswordButton:hover {
+  background: lightgray;
+}
+
+.register-header-content {
+  height: 70px;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  width: 100%;
+  border-bottom: 1px solid black;
+}
+
+.Register-body {
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  width: 100%;
+  height: calc(100% - 60px);
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+
+.SelectRegisterLabel {
+  color: #474747;
+  margin-bottom: 4rem;
+  text-align: center;
+}
+
+.Register-footer {
+  height: 70px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  line-height: 70px;
+  padding: 0 1rem;
+}
+
+.FooterLabel {
+  font-size: 12px;
+  letter-spacing: 3px;
+  font-weight: bold;
+  color: #474747;
+}
+
+.boxSubscription {
+  width: 260px;
+  background: rgb(233, 233, 233);
+  padding-bottom: 2rem;
+  margin: auto;
+}
+
+.subscriptionButton {
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: bold;
+  font-family: 'Poppins';
+  text-decoration: none;
+  text-align: center;
+  background: #008454;
+  border: 1px solid #495057;
+  box-sizing: border-box;
+  border-radius: 4px;
+  height: 45px;
+  width: 165px;
+}
+
+.subscriptionButton:active {
+  background: #055e3d;
+}
+
+.labelHeader {
+  font-size: 18px;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 1rem;
+  padding: 10px;
+}
+
+.AboutUsLabel {
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  text-decoration: none;
+  color: #474747;
+}
+
+.PrivacyTermsLabel {
+  font-weight: 800;
+  font-size: 18px;
+  display: flex;
+  text-decoration: none;
+  color: #474747;
+  margin-left: 50px;
+}
+
+@media (max-width: 767px) {
+  .AboutUsLabel {
+    white-space: nowrap;
+  }
+
+  .PrivacyTermsLabel {
+    white-space: nowrap;
+  }
+
+  .Register-header {
+    overflow-x: scroll;
+    overflow-y: hidden;
+  }
+
+  .Register {
+    max-width: 100vw;
+    overflow-x: hidden;
+  }
+
+  .Register-body {
+    background-position: left;
+  }
+
+  .Box4Label {
+    margin: 0;
+  }
+}
+
+@font-face {
+  src: url("src/utils/Roboto-Regular.ttf") format("truetype");
+}
+
+@font-face {
+  font-family: "Poppins";
+  src: url("src/utils/Poppins-Regular.ttf") format("truetype");
+}

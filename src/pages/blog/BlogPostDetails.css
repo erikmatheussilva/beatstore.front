@@ -1,0 +1,70 @@
+html {
+    position: relative;
+    min-height: 100%;
+  }
+
+  ul {
+    text-align: justify;
+    padding: 15px 18px;
+  }
+  
+  .Home-header {
+    position: sticky;
+    width: 100%;
+    height: 70px;
+    background: #ffffff;
+    display: flex;
+    justify-content: space-between;
+  }
+  
+  .LoginButtonXS {
+    position: absolute;
+    color: #474747;
+    font-size: 16px;
+    font-family: 'Poppins';
+    text-decoration: none;
+    text-align: center;
+    padding-top: 6px;
+    background: #FFFFFF;
+    border: 1px solid #495057;
+    box-sizing: border-box;
+    border-radius: 4px;
+    height: 36px;
+    width: 95px;
+    top: 30px;
+    margin-right: 2%;
+  }
+  
+  .LoginButton:active {
+    background: lightgray;
+  }
+  
+  .box1 {
+    width:150px;
+    height:30px;
+    background:#BBDBCD;
+    position: absolute;
+  }
+
+  .Home-footer {
+    
+    height: 55px;
+    background: #ffffff;
+    display: flex;
+    bottom: 0;
+    width: 100%;
+  }
+
+  .FooterLabel {
+    position: absolute;
+    font-size: 12px;
+    letter-spacing: 3px;
+    font-weight: bold;
+    right: 1140px;
+    color: #474747;
+  }
+  
+  @font-face{
+    font-family: "Poppins";
+    src: url("src/utils/Poppins-Regular.ttf") format("truetype");
+  }
