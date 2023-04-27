@@ -5,6 +5,7 @@ import gtm from '../../lib/gtm';
 import './Home.css';
 import { Grid } from '@material-ui/core';
 import SongList from './SongList';
+import Footer from '../Footer';
 
 const Home: FC = () => {
   useEffect(() => {
@@ -32,8 +33,8 @@ const Home: FC = () => {
               <SongList />
             </Grid>
           </Grid>
-          <footer className="Home-footer" />
         </main>
+        <Footer />
       </div>
     </>
   );

@@ -2,7 +2,6 @@ import type { FC } from 'react';
 import {
   Box,
   Container,
-  Divider,
   Grid,
   Link,
   List,
@@ -11,52 +10,30 @@ import {
   ListItemText,
   Typography
 } from '@material-ui/core';
-import { alpha } from '@material-ui/core/styles';
 import MinusIcon from '../icons/Minus';
 import FooterLogo from './FooterLogo';
 
 const sections = [
-  {
-    title: 'Menu',
-    links: [
-      {
-        title: 'Browse Components',
-        href: '/browse'
-      },
-      {
-        title: 'Documentation',
-        href: '/docs'
-      }
-    ]
-  },
-  {
-    title: 'Placeholders',
-    links: [
-      {
-        title: 'Terms & Conditions',
-        href: '#'
-      },
-      {
-        title: 'License',
-        href: '#'
-      },
-      {
-        title: 'Contact',
-        href: '#'
-      }
-    ]
-  },
+
   {
     title: 'Social',
     links: [
       {
         title: 'Instagram',
-        href: '#'
+        href: 'https://www.instagram.com/the.mostblunted/'
+      },
+      {
+        title: 'SoundCloud',
+        href: 'https://www.soundcloud.com/dngnsnds'
+      },
+      {
+        title: 'Bandcamp',
+        href: 'https://dungeonsounds5551.bandcamp.com'
       },
       {
         title: 'LinkedIn',
-        href: '#'
-      }
+        href: 'https://www.linkedin.com/in/erikmatheussilva/'
+      },
     ]
   }
 ];
@@ -65,9 +42,9 @@ const Footer: FC = (props) => (
   <Box
     sx={{
       backgroundColor: 'background.default',
-      pb: 6,
+      pb: 2,
       pt: {
-        md: 15,
+        md: 8,
         xs: 6
       }
     }}
@@ -76,6 +53,7 @@ const Footer: FC = (props) => (
     <Container maxWidth="lg">
       <Grid
         container
+        maxHeight={100}
         spacing={3}
       >
         <Grid
@@ -92,7 +70,7 @@ const Footer: FC = (props) => (
           }}
           xs={12}
         >
-          <FooterLogo height="120px" width="205px" />
+          <FooterLogo height="155px" width="205px" />
           <Typography
             color="textSecondary"
             sx={{ mt: 1 }}
@@ -106,6 +84,7 @@ const Footer: FC = (props) => (
             md={3}
             sm={4}
             sx={{
+              marginLeft: '30rem',
               order: {
                 md: index + 2,
                 xs: index + 1
@@ -156,18 +135,6 @@ const Footer: FC = (props) => (
           </Grid>
         ))}
       </Grid>
-      <Divider
-        sx={{
-          borderColor: (theme) => alpha(theme.palette.primary.contrastText, 0.12),
-          my: 6
-        }}
-      />
-      <Typography
-        color="textSecondary"
-        variant="caption"
-      >
-        All Rights Reserved.
-      </Typography>
     </Container>
   </Box>
 );

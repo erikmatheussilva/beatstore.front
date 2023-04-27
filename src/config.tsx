@@ -55,9 +55,9 @@ export const offlineSidebarConfig = [
     path: '/',
     icon: <FontAwesomeIcon icon={faCompactDisc} />
   },
-  {
-    title: 'Map',
-    path: '/browse/map',
-    icon: <FontAwesomeIcon icon={faCompactDisc} />
-  },
+  // {
+  //   title: 'Map',
+  //   path: '/browse/map',
+  //   icon: <FontAwesomeIcon icon={faCompactDisc} />
+  // },
 ];
