@@ -1,13 +1,14 @@
 import { FC, useEffect, useRef, useState } from 'react';
-import { AppBar, Box, Button, ButtonBase, IconButton, Popover, Toolbar, Typography } from '@material-ui/core';
+import { AppBar, Box, Button, ButtonBase, Popover, Toolbar } from '@material-ui/core';
 import { experimentalStyled } from '@material-ui/core/styles';
 import type { AppBarProps } from '@material-ui/core';
 // import HeaderLogo from '../HeaderLogo';
 import './ResponsiveNavbar.css';
 import HomeHeaderLogo from './HomeHeaderLogo';
-import { faLink } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
+// import { User } from 'src/models/user';
+// import moment from 'moment';
+import FormForgotPassword from './authentication/password-recovery/ForgotPassword';
 
 interface ResponsiveNavbarProps extends AppBarProps {
   onSidebarMobileOpen?: () => void;
@@ -22,16 +23,30 @@ const ResponsiveNavbarRoot = experimentalStyled(AppBar)(({ theme }) => ({
 const ResponsiveNavbar: FC<ResponsiveNavbarProps> = (props) => {
   const { onSidebarMobileOpen, ...other } = props;
   const anchorRef = useRef<HTMLButtonElement | null>(null);
-  const [open, setOpen] = useState<boolean>(false);
+  const [openModal, setOpenModal] = useState<boolean>(false);
   const [position, setPosition] = useState(window.pageYOffset);
   const [visible, setVisible] = useState(true);
 
-  const handleOpen = (): void => {
-    setOpen(true);
+  // const emptyUser: User = {
+  //   cpfCnpj: '',
+  //   dtBirth: moment(new Date()).format('YYYY-MM-DD'),
+  //   email: '',
+  //   firstName: '',
+  //   userId: '',
+  //   roleId: '',
+  //   userName: '',
+  //   phoneNumber: '',
+  //   lastName: '',
+  //   role: '',
+  //   claims: [],
+  // };
+
+  const handleOpenModal = (): void => {
+    setOpenModal(true);
   };
 
-  const handleClose = (): void => {
-    setOpen(false);
+  const handleCloseModal = (): void => {
+    setOpenModal(false);
   };
   useEffect(() => {
     const handleScroll = () => {
@@ -62,17 +77,17 @@ const ResponsiveNavbar: FC<ResponsiveNavbarProps> = (props) => {
             }}
           >
             <Button
-              sx={{ my: 2, color: 'black', display: 'block', fontSize: '20px', fontWeight: 'bold', marginLeft: '30px' }}
+              sx={{ my: 2, color: 'black', display: 'block', fontSize: '20px', fontWeight: 'bold', marginLeft: '3rem' }}
             >
               Explore
             </Button>
           </Box>
         </Box>
-        <Box sx={{ display: { xs: 'none', lg: 'block' } }}>
+        <Box sx={{ display: { xs: 'none', lg: 'block' }, marginLeft: '40rem' }}>
           <Box
             className={cls}
             component={ButtonBase}
-            onClick={handleOpen}
+            onClick={handleOpenModal}
             ref={anchorRef}
             sx={{
               alignItems: 'center',
@@ -80,41 +95,38 @@ const ResponsiveNavbar: FC<ResponsiveNavbarProps> = (props) => {
             }}
           >
             <Button
-              sx={{ my: 2, color: 'black', display: 'block', fontSize: '20px', fontWeight: 'bold', marginLeft: '30px' }}
+              sx={{ my: 2, color: 'black', display: 'block', fontSize: '20px', fontWeight: 'bold' }}
             >
-              Sobre
+              Sign To Get Free Beats
             </Button>
           </Box>
-          <Popover
-            anchorEl={anchorRef.current}
-            anchorOrigin={{
-              horizontal: 'center',
-              vertical: 'bottom'
-            }}
-            keepMounted
-            onClose={handleClose}
-            open={open}
-            PaperProps={{
-              sx: { width: 260 }
-            }}
-          >
-            <Box sx={{ p: 2 }}>
-              <Typography
-                color="textPrimary"
-                variant="subtitle2"
-                display="inline-flex"
-              >
-                Hey
-                <IconButton
-                  sx={{ paddingTop: 0, marginTop: 0, paddingLeft: 2 }}
-                  onClick={() => { navigator.clipboard.writeText('toma safadinhaaa'); }}
-                >
-                  <FontAwesomeIcon icon={faLink} />
-                </IconButton>
-              </Typography>
-            </Box>
-            {/* <Divider /> */}
-            {/* <Box sx={{ mt: 2 }}>
+        </Box>
+        <Popover
+          anchorEl={anchorRef.current}
+          anchorOrigin={{
+            horizontal: 'left',
+            vertical: 'bottom'
+          }}
+          anchorReference="none"
+          style={{
+            display: 'flex',
+            justifyContent: 'center',
+            alignItems: 'center',
+          }}
+          keepMounted
+          onClose={handleCloseModal}
+          open={openModal}
+          PaperProps={{
+            sx: { width: 500, height: 500 },
+            style: {
+              borderRadius: 0,
+              boxShadow: '0.4em 0.4em 1em grey'
+            }
+          }}
+        >
+          <FormForgotPassword />
+          {/* <Divider /> */}
+          {/* <Box sx={{ mt: 2 }}>
                 <MenuItem
                   component={RouterLink}
                   to="/dashboard/social/profile"
@@ -134,8 +146,7 @@ const ResponsiveNavbar: FC<ResponsiveNavbarProps> = (props) => {
                   />
                 </MenuItem>
               </Box> */}
-          </Popover>
-        </Box>
+        </Popover>
       </Toolbar>
     </ResponsiveNavbarRoot>
   );

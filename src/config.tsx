@@ -52,12 +52,12 @@ export const sidebarConfig = [
 export const offlineSidebarConfig = [
   {
     title: 'BEATS',
-    path: '/',
+    path: '/beats',
     icon: <FontAwesomeIcon icon={faCompactDisc} />
   },
-  // {
-  //   title: 'Map',
-  //   path: '/browse/map',
-  //   icon: <FontAwesomeIcon icon={faCompactDisc} />
-  // },
+  {
+    title: 'CONTACT',
+    path: '/contact',
+    icon: <FontAwesomeIcon icon={faCompactDisc} />
+  },
 ];

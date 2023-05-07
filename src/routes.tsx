@@ -11,6 +11,7 @@ import LoadingScreen from './components/LoadingScreen';
 import HomeLayout from './components/HomeLayout';
 import { ImportWallet } from './components/blog';
 import AclGuard from './components/AclGuard';
+import Beats from './pages/Beats';
 
 const Loadable = (Component) => (props) => (<Suspense fallback={<LoadingScreen />}><Component {...props} /></Suspense>);
 
@@ -171,15 +172,9 @@ const routes: PartialRouteObject[] = [
     ]
   },
   {
-    path: 'contact',
-    element: <Contact />
-  },
-  {
     path: 'dashboard',
     element: (
-      <AuthGuard>
-        <DashboardLayout />
-      </AuthGuard>
+      <DashboardLayout />
     ),
     children: [
       {
@@ -350,6 +345,14 @@ const routes: PartialRouteObject[] = [
       {
         path: '/',
         element: <Home />
+      },
+      {
+        path: 'contact',
+        element: <Contact />
+      },
+      {
+        path: 'beats',
+        element: <Beats />
       },
       {
         path: 'browse',

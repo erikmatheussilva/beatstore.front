@@ -1,5 +1,5 @@
 import { FC, useState, useRef } from 'react';
-import { Box, Dialog, Divider, IconButton, Paper, Typography, Button, Alert, Autocomplete, TextField } from '@material-ui/core';
+import { Box, Divider, IconButton, Paper, Typography, Button, Alert } from '@material-ui/core';
 import XIcon from '../../icons/X';
 import Snackbar from '@material-ui/core/Snackbar';
 import { Form, Formik, FormikProps } from 'formik';
@@ -7,101 +7,77 @@ import InputCustom from '../input/InputCustom';
 import * as Yup from 'yup';
 // import moment from 'moment';
 // import validateCNPJ from '../../utils/validateCNPJ';
-import useAuth from 'src/hooks/useAuth';
 import { User } from 'src/models/user';
-import { cnpj, cpf } from 'cpf-cnpj-validator';
 // import { condoApi } from 'src/API/CondoApi';
 // import { condoUserApi } from 'src/API/CondoUserApi';
 // import validateCPF from 'src/utils/validateCPF';
 
-interface InternalRegisterModalProps { onClose?: () => void; open: boolean; user: User; aclPutUser: any; }
+interface InternalRegisterModalProps { onClose?: () => void; user: User; postUser: any; }
 
 const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
-  const { onClose, open, user, aclPutUser, ...other } = props;
+  const { onClose, user, postUser } = props;
   console.log('INTERNAL REGISTER MODAL user: ', user);
   const [snackbar, setSnackbar] = useState(false);
-  const { internalRegister } = useAuth() as any;
   const handleCloseSnackbar = (event?: React.SyntheticEvent, reason?: string) => { if (reason === 'clickaway') { return; } setSnackbar(false); };
   const formikRef = useRef<FormikProps<any>>();
 
   const initialValues = {
     email: user.email || '',
-    userName: user.userName || '',
     phoneNumber: user.phoneNumber || '',
-    cpfCnpj: user.cpfCnpj || '',
     lastName: user.lastName || '',
     firstName: user.firstName || '',
-    password: undefined,
-    role: user.role || '',
-    claims: undefined,
-    condoU: {
-      id: '',
-      condoId: '',
-      aspNetUserId: '',
-    },
   };
-  const [selectedClaims, setSelectedClaims] = useState([]);
   // const [selectedUserCondos, setSelectedUserCondos] = useState([]);
 
   const validationSchema = {
     email: Yup.string().required('E-mail é obrigatório').email('Deve ser um e-mail válido'),
-    userName: Yup.string().required('Nome de usuário é obrigatório'),
-    password: undefined,
     phoneNumber: Yup.string().required('Celular é obrigatório').matches(/^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/, 'Este número não parece com um número de telefone'),
-    cpfCnpj: Yup.string().required('CPF / CNPJ é obrigatório').test('cpfCnpj', 'CPF / CNPJ inválido', (cpfCnpj) => cpf.isValid(cpfCnpj) || cnpj.isValid(cpfCnpj)),
     lastName: Yup.string().required('Sobrenome é obrigatório'),
     firstName: Yup.string().required('Nome é obrigatório'),
-    role: undefined,
-    claims: undefined,
   };
 
-  if (!user.password) {
-    initialValues.password = '';
-    validationSchema.password = Yup.string().required('Senha é obrigatória').matches(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$/, 'Deve conter no mínimo 8 caracteres, uma letra maiúscula, uma letra minúscula, um número e um caractere especial (#@$%&*)');
-  }
-
-  const readClaims = [
-    {
-      name: 'Acordos',
-      claimType: 'SETTLE',
-      claimValue: 'READ'
-    },
-    {
-      name: 'Cotas',
-      claimType: 'BILLING',
-      claimValue: 'READ'
-    },
-    {
-      name: 'Moradores',
-      claimType: 'DWELLER',
-      claimValue: 'READ'
-    },
-    {
-      name: 'Unidades',
-      claimType: 'BUILDING',
-      claimValue: 'READ'
-    },
-    {
-      name: 'Clientes',
-      claimType: 'CONDO',
-      claimValue: 'READ'
-    },
-    {
-      name: 'Mensageria',
-      claimType: 'CRONJOB',
-      claimValue: 'READ'
-    },
-    {
-      name: 'Carteira',
-      claimType: 'WALLET',
-      claimValue: 'READ'
-    },
-    {
-      name: 'Acessos',
-      claimType: 'USERS',
-      claimValue: 'READ'
-    },
-  ];
+  // const readClaims = [
+  //   {
+  //     name: 'Acordos',
+  //     claimType: 'SETTLE',
+  //     claimValue: 'READ'
+  //   },
+  //   {
+  //     name: 'Cotas',
+  //     claimType: 'BILLING',
+  //     claimValue: 'READ'
+  //   },
+  //   {
+  //     name: 'Moradores',
+  //     claimType: 'DWELLER',
+  //     claimValue: 'READ'
+  //   },
+  //   {
+  //     name: 'Unidades',
+  //     claimType: 'BUILDING',
+  //     claimValue: 'READ'
+  //   },
+  //   {
+  //     name: 'Clientes',
+  //     claimType: 'CONDO',
+  //     claimValue: 'READ'
+  //   },
+  //   {
+  //     name: 'Mensageria',
+  //     claimType: 'CRONJOB',
+  //     claimValue: 'READ'
+  //   },
+  //   {
+  //     name: 'Carteira',
+  //     claimType: 'WALLET',
+  //     claimValue: 'READ'
+  //   },
+  //   {
+  //     name: 'Acessos',
+  //     claimType: 'USERS',
+  //     claimValue: 'READ'
+  //   },
+  // ];
 
   // const [condosMap, setCondosMap] = useState([]);
 
@@ -113,11 +89,7 @@ const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
   // useEffect(() => { getCondo(); }, []);
 
   return (
-    <Dialog
-      onClose={onClose}
-      open={open}
-      {...other}
-    >
+    <>
       <Paper
         elevation={12}
         sx={{ display: 'flex', flexDirection: 'column', mx: 'auto', outline: 'none', width: 600 }}
@@ -132,21 +104,8 @@ const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
           }): Promise<void> => {
             try {
               if (user.id) {
-                await aclPutUser({
-                  ...values,
-                  claims: selectedClaims,
-                }).then(() => {
-                  setStatus({ success: true });
-                  setSubmitting(false);
-                }).catch(() => {
-                  setStatus({ success: false });
-                  setSubmitting(false);
-                });
-              } else {
-                delete values.id;
-                await internalRegister({
-                  ...values,
-                  claims: selectedClaims,
+                await postUser({
+                  ...values
                 }).then(() => {
                   setStatus({ success: true });
                   setSubmitting(false);
@@ -245,7 +204,7 @@ const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
                 onChange={formikProps.handleChange}
                 label="Tipo do usuário:"
               />
-              <Autocomplete
+              {/* <Autocomplete
                 options={readClaims.map((readClaim) => readClaim.name)}
                 onChange={async (event: any, value) => {
                   const newValue = readClaims
@@ -254,8 +213,6 @@ const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
                       claimType: map.claimType,
                       claimValue: map.claimValue
                     }));
-                  setSelectedClaims(newValue);
-                  console.log(newValue, 'OU ESSE AQUI?');
                 }}
                 multiple
                 limitTags={3}
@@ -272,14 +229,14 @@ const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
                     fullWidth
                   />
                 )}
-              />
+              /> */}
               {/* <Typography
                 gutterBottom
                 variant="caption"
                 color="textSecondary"
                 display="inline-flex"
                 paddingLeft={2}
-              >
+                >
                 Condomínios do usuários
               </Typography>
               <Autocomplete
@@ -308,7 +265,7 @@ const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
                       margin: '20px',
                     }}
                     fullWidth
-                  />
+                    />
                 )}
               />
               <Autocomplete
@@ -338,7 +295,7 @@ const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
                     }}
                     fullWidth
                   />
-                )}
+                  )}
               /> */}
               {/* <Box
                 sx={{
@@ -361,7 +318,7 @@ const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
                 I have read the
                 {' '}
                 <Link
-                  color="primary"
+                color="primary"
                   component="a"
                   href="#"
                 >
@@ -377,7 +334,7 @@ const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
             {errors.submit && (
               <Box sx={{ mt: 3 }}>
                 <FormHelperText error>
-                 <span>
+                <span>
   Algo deu errado
 </span>
                 </FormHelperText>
@@ -410,7 +367,7 @@ const InternalRegisterModal: FC<InternalRegisterModalProps> = (props) => {
           Salvo com sucesso!
         </Alert>
       </Snackbar>
-    </Dialog>
+    </>
   );
 };
 
