@@ -84,6 +84,7 @@
     "react-helmet-async": "^1.0.7",
     "react-hot-toast": "^1.0.2",
     "react-i18next": "^11.8.5",
+    "react-icons": "^4.8.0",
     "react-input-mask": "^2.0.4",
     "react-markdown": "^5.0.3",
     "react-modal-image": "^2.5.0",
@@ -101,6 +102,7 @@
     "stylis": "^4.0.10",
     "stylis-plugin-rtl": "^2.1.0",
     "typescript": "^4.2.4",
+    "use-sound": "^4.0.1",
     "yup": "^0.32.9"
   },
   "devDependencies": {

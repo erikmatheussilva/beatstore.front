@@ -3,6 +3,7 @@ import { Outlet } from 'react-router-dom';
 import { experimentalStyled } from '@material-ui/core/styles';
 import ResponsiveNavbar from './ResponsiveNavbar';
 import SidebarDrawer from './dashboard/SidebarDrawer';
+import Footer from './Footer';
 
 interface HomeLayoutProps {
   children?: ReactNode;
@@ -39,6 +40,7 @@ const HomeLayout: FC<HomeLayoutProps> = () => {
         open={isSidebarDrawerOpen}
       />
       <Outlet />
+      <Footer />
     </HomeLayoutRoot>
   );
 };

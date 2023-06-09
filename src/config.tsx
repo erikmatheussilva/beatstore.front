@@ -56,6 +56,11 @@ export const offlineSidebarConfig = [
     icon: <FontAwesomeIcon icon={faCompactDisc} />
   },
   {
+    title: 'COUNTER',
+    path: '/counter',
+    icon: <FontAwesomeIcon icon={faCompactDisc} />
+  },
+  {
     title: 'CONTACT',
     path: '/contact',
     icon: <FontAwesomeIcon icon={faCompactDisc} />

@@ -12,6 +12,7 @@ import HomeLayout from './components/HomeLayout';
 import { ImportWallet } from './components/blog';
 import AclGuard from './components/AclGuard';
 import Beats from './pages/Beats';
+import CounterViewIndex from './pages/CounterViewIndex';
 
 const Loadable = (Component) => (props) => (<Suspense fallback={<LoadingScreen />}><Component {...props} /></Suspense>);
 
@@ -353,6 +354,10 @@ const routes: PartialRouteObject[] = [
       {
         path: 'beats',
         element: <Beats />
+      },
+      {
+        path: 'counter',
+        element: <CounterViewIndex />
       },
       {
         path: 'browse',

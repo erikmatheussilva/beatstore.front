@@ -1,9 +1,7 @@
 import { useEffect } from 'react';
 import type { FC } from 'react';
 import { Helmet } from 'react-helmet-async';
-import './Beats.css';
 import { Grid } from '@material-ui/core';
-import Footer from 'src/components/Footer';
 import SongList from 'src/components/home/SongList';
 import gtm from 'src/lib/gtm';
 
@@ -16,10 +14,8 @@ const Beats: FC = () => {
       <Helmet>
         <title>dungeonsounds - Beats</title>
       </Helmet>
-      <div className="Beats">
-        <main
-          className="Beats-body"
-        >
+      <div>
+        <main>
           <Grid container>
             <Grid
               item
@@ -34,7 +30,6 @@ const Beats: FC = () => {
             </Grid>
           </Grid>
         </main>
-        <Footer />
       </div>
     </>
   );
