@@ -35,6 +35,12 @@ export const QodelessApiConfig = {
 
 };
 
+export const WeatherForecastUrl = {
+  baseURL: 'https://goweather.herokuapp.com/weather/'
+  // baseURL: 'http://localhost:5000/api/'
+
+};
+
 export const QodelessConfig = {
   baseURL: 'http://localhost:3000/'
 };
@@ -58,6 +64,11 @@ export const offlineSidebarConfig = [
   {
     title: 'COUNTER',
     path: '/counter',
+    icon: <FontAwesomeIcon icon={faCompactDisc} />
+  },
+  {
+    title: 'WEATHER',
+    path: '/weather',
     icon: <FontAwesomeIcon icon={faCompactDisc} />
   },
   {

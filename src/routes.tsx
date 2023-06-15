@@ -13,6 +13,7 @@ import { ImportWallet } from './components/blog';
 import AclGuard from './components/AclGuard';
 import Beats from './pages/Beats';
 import CounterViewIndex from './pages/CounterViewIndex';
+import WeatherReport from './components/WeatherReport';
 
 const Loadable = (Component) => (props) => (<Suspense fallback={<LoadingScreen />}><Component {...props} /></Suspense>);
 
@@ -358,6 +359,10 @@ const routes: PartialRouteObject[] = [
       {
         path: 'counter',
         element: <CounterViewIndex />
+      },
+      {
+        path: 'weather',
+        element: <WeatherReport />
       },
       {
         path: 'browse',
